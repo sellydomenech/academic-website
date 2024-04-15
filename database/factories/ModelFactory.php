@@ -17,4 +17,21 @@ $factory->define(Brackets\AdminAuth\Models\AdminUser::class, function (Faker\Gen
         'last_login_at' => $faker->dateTime,
         
     ];
+});/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Teacher::class, static function (Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'nik' => $faker->sentence,
+        'date_of_birth' => $faker->date(),
+        'phone_number' => $faker->randomNumber(5),
+        'address' => $faker->text(),
+        'email' => $faker->email,
+        'registration_date' => $faker->date(),
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
 });

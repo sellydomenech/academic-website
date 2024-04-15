@@ -48,3 +48,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('teachers')->name('teachers/')->group(static function() {
+            Route::get('/',                                             'TeacherController@index')->name('index');
+            Route::get('/create',                                       'TeacherController@create')->name('create');
+            Route::post('/',                                            'TeacherController@store')->name('store');
+            Route::get('/{teacher}/edit',                               'TeacherController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'TeacherController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{teacher}',                                   'TeacherController@update')->name('update');
+            Route::delete('/{teacher}',                                 'TeacherController@destroy')->name('destroy');
+        });
+    });
+});
