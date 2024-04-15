@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 /* CONTOH */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 Route::get('home', function () {
