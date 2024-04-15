@@ -189,3 +189,12 @@ $factory->define(App\Models\PersonalAccessToken::class, static function (Faker\G
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\RoleHasPermission::class, static function (Faker\Generator $faker) {
+    return [
+        'permission_id' => $faker->sentence,
+        'role_id' => $faker->sentence,
+        
+        
+    ];
+});
