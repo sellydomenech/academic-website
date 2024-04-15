@@ -3,3 +3,7 @@ import './profile-edit-profile';
 import './profile-edit-password';
 import './teacher';
 import './role';
+import './activation';
+import './admin-activation';
+import './admin-password-reset';
+import './admin-user';

@@ -4,6 +4,9 @@
             <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.content') }}</li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/teachers') }}"><i class="nav-icon icon-magnet"></i> {{ trans('admin.teacher.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/roles') }}"><i class="nav-icon icon-compass"></i> {{ trans('admin.role.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/activations') }}"><i class="nav-icon icon-compass"></i> {{ trans('admin.activation.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/admin-activations') }}"><i class="nav-icon icon-plane"></i> {{ trans('admin.admin-activation.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/admin-password-resets') }}"><i class="nav-icon icon-graduation"></i> {{ trans('admin.admin-password-reset.title') }}</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>

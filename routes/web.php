@@ -78,3 +78,63 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('activations')->name('activations/')->group(static function() {
+            Route::get('/',                                             'ActivationsController@index')->name('index');
+            Route::get('/create',                                       'ActivationsController@create')->name('create');
+            Route::post('/',                                            'ActivationsController@store')->name('store');
+            Route::get('/{activation}/edit',                            'ActivationsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ActivationsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{activation}',                                'ActivationsController@update')->name('update');
+            Route::delete('/{activation}',                              'ActivationsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('admin-activations')->name('admin-activations/')->group(static function() {
+            Route::get('/',                                             'AdminActivationsController@index')->name('index');
+            Route::get('/create',                                       'AdminActivationsController@create')->name('create');
+            Route::post('/',                                            'AdminActivationsController@store')->name('store');
+            Route::get('/{adminActivation}/edit',                       'AdminActivationsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AdminActivationsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{adminActivation}',                           'AdminActivationsController@update')->name('update');
+            Route::delete('/{adminActivation}',                         'AdminActivationsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('admin-password-resets')->name('admin-password-resets/')->group(static function() {
+            Route::get('/',                                             'AdminPasswordResetsController@index')->name('index');
+            Route::get('/create',                                       'AdminPasswordResetsController@create')->name('create');
+            Route::post('/',                                            'AdminPasswordResetsController@store')->name('store');
+            Route::get('/{adminPasswordReset}/edit',                    'AdminPasswordResetsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AdminPasswordResetsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{adminPasswordReset}',                        'AdminPasswordResetsController@update')->name('update');
+            Route::delete('/{adminPasswordReset}',                      'AdminPasswordResetsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('admin-users')->name('admin-users/')->group(static function() {
+            Route::get('/',                                             'AdminUsersController@index')->name('index');
+            Route::get('/create',                                       'AdminUsersController@create')->name('create');
+            Route::post('/',                                            'AdminUsersController@store')->name('store');
+            Route::get('/{adminUser}/edit',                             'AdminUsersController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AdminUsersController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{adminUser}',                                 'AdminUsersController@update')->name('update');
+            Route::delete('/{adminUser}',                               'AdminUsersController@destroy')->name('destroy');
+        });
+    });
+});
