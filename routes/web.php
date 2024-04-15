@@ -138,3 +138,33 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('failed-jobs')->name('failed-jobs/')->group(static function() {
+            Route::get('/',                                             'FailedJobsController@index')->name('index');
+            Route::get('/create',                                       'FailedJobsController@create')->name('create');
+            Route::post('/',                                            'FailedJobsController@store')->name('store');
+            Route::get('/{failedJob}/edit',                             'FailedJobsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'FailedJobsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{failedJob}',                                 'FailedJobsController@update')->name('update');
+            Route::delete('/{failedJob}',                               'FailedJobsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('media')->name('media/')->group(static function() {
+            Route::get('/',                                             'MediaController@index')->name('index');
+            Route::get('/create',                                       'MediaController@create')->name('create');
+            Route::post('/',                                            'MediaController@store')->name('store');
+            Route::get('/{medium}/edit',                                'MediaController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'MediaController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{medium}',                                    'MediaController@update')->name('update');
+            Route::delete('/{medium}',                                  'MediaController@destroy')->name('destroy');
+        });
+    });
+});

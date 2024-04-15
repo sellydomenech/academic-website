@@ -97,3 +97,40 @@ $factory->define(App\Models\AdminUser::class, static function (Faker\Generator $
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\FailedJob::class, static function (Faker\Generator $faker) {
+    return [
+        'uuid' => $faker->sentence,
+        'connection' => $faker->text(),
+        'queue' => $faker->text(),
+        'payload' => $faker->text(),
+        'exception' => $faker->text(),
+        'failed_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Medium::class, static function (Faker\Generator $faker) {
+    return [
+        'model_type' => $faker->sentence,
+        'model_id' => $faker->sentence,
+        'uuid' => $faker->sentence,
+        'collection_name' => $faker->sentence,
+        'name' => $faker->firstName,
+        'file_name' => $faker->sentence,
+        'mime_type' => $faker->sentence,
+        'disk' => $faker->sentence,
+        'conversions_disk' => $faker->sentence,
+        'size' => $faker->sentence,
+        'order_column' => $faker->randomNumber(5),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        'manipulations' => ['en' => $faker->sentence],
+        'custom_properties' => ['en' => $faker->sentence],
+        'generated_conversions' => ['en' => $faker->sentence],
+        'responsive_images' => ['en' => $faker->sentence],
+        
+    ];
+});
