@@ -13,6 +13,7 @@
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/model-has-permissions') }}"><i class="nav-icon icon-energy"></i> {{ trans('admin.model-has-permission.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/model-has-roles') }}"><i class="nav-icon icon-compass"></i> {{ trans('admin.model-has-role.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/password-reset-tokens') }}"><i class="nav-icon icon-ghost"></i> {{ trans('admin.password-reset-token.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/personal-access-tokens') }}"><i class="nav-icon icon-puzzle"></i> {{ trans('admin.personal-access-token.title') }}</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>

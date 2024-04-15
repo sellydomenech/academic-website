@@ -173,3 +173,19 @@ $factory->define(App\Models\PasswordResetToken::class, static function (Faker\Ge
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\PersonalAccessToken::class, static function (Faker\Generator $faker) {
+    return [
+        'tokenable_type' => $faker->sentence,
+        'tokenable_id' => $faker->sentence,
+        'name' => $faker->firstName,
+        'token' => $faker->sentence,
+        'abilities' => $faker->text(),
+        'last_used_at' => $faker->dateTime,
+        'expires_at' => $faker->dateTime,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

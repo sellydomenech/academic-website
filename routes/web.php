@@ -228,3 +228,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('personal-access-tokens')->name('personal-access-tokens/')->group(static function() {
+            Route::get('/',                                             'PersonalAccessTokensController@index')->name('index');
+            Route::get('/create',                                       'PersonalAccessTokensController@create')->name('create');
+            Route::post('/',                                            'PersonalAccessTokensController@store')->name('store');
+            Route::get('/{personalAccessToken}/edit',                   'PersonalAccessTokensController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PersonalAccessTokensController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{personalAccessToken}',                       'PersonalAccessTokensController@update')->name('update');
+            Route::delete('/{personalAccessToken}',                     'PersonalAccessTokensController@destroy')->name('destroy');
+        });
+    });
+});

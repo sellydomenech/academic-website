@@ -13,3 +13,4 @@ import './migration';
 import './model-has-permission';
 import './model-has-role';
 import './password-reset-token';
+import './personal-access-token';
