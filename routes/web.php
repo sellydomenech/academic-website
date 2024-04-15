@@ -183,3 +183,48 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('model-has-permissions')->name('model-has-permissions/')->group(static function() {
+            Route::get('/',                                             'ModelHasPermissionsController@index')->name('index');
+            Route::get('/create',                                       'ModelHasPermissionsController@create')->name('create');
+            Route::post('/',                                            'ModelHasPermissionsController@store')->name('store');
+            Route::get('/{modelHasPermission}/edit',                    'ModelHasPermissionsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ModelHasPermissionsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{modelHasPermission}',                        'ModelHasPermissionsController@update')->name('update');
+            Route::delete('/{modelHasPermission}',                      'ModelHasPermissionsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('model-has-roles')->name('model-has-roles/')->group(static function() {
+            Route::get('/',                                             'ModelHasRolesController@index')->name('index');
+            Route::get('/create',                                       'ModelHasRolesController@create')->name('create');
+            Route::post('/',                                            'ModelHasRolesController@store')->name('store');
+            Route::get('/{modelHasRole}/edit',                          'ModelHasRolesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ModelHasRolesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{modelHasRole}',                              'ModelHasRolesController@update')->name('update');
+            Route::delete('/{modelHasRole}',                            'ModelHasRolesController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('password-reset-tokens')->name('password-reset-tokens/')->group(static function() {
+            Route::get('/',                                             'PasswordResetTokensController@index')->name('index');
+            Route::get('/create',                                       'PasswordResetTokensController@create')->name('create');
+            Route::post('/',                                            'PasswordResetTokensController@store')->name('store');
+            Route::get('/{passwordResetToken}/edit',                    'PasswordResetTokensController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PasswordResetTokensController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{passwordResetToken}',                        'PasswordResetTokensController@update')->name('update');
+            Route::delete('/{passwordResetToken}',                      'PasswordResetTokensController@destroy')->name('destroy');
+        });
+    });
+});

@@ -10,3 +10,6 @@ import './admin-user';
 import './failed-job';
 import './medium';
 import './migration';
+import './model-has-permission';
+import './model-has-role';
+import './password-reset-token';

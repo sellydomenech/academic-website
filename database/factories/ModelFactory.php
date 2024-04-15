@@ -143,3 +143,33 @@ $factory->define(App\Models\Migration::class, static function (Faker\Generator $
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\ModelHasPermission::class, static function (Faker\Generator $faker) {
+    return [
+        'permission_id' => $faker->sentence,
+        'model_type' => $faker->sentence,
+        'model_id' => $faker->sentence,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\ModelHasRole::class, static function (Faker\Generator $faker) {
+    return [
+        'role_id' => $faker->sentence,
+        'model_type' => $faker->sentence,
+        'model_id' => $faker->sentence,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\PasswordResetToken::class, static function (Faker\Generator $faker) {
+    return [
+        'email' => $faker->email,
+        'token' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        
+        
+    ];
+});
