@@ -16,3 +16,4 @@ import './password-reset-token';
 import './personal-access-token';
 import './role-has-permission';
 import './user';
+import './wysiwyg-media';

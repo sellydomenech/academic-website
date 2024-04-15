@@ -212,3 +212,15 @@ $factory->define(App\Models\User::class, static function (Faker\Generator $faker
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\WysiwygMedia::class, static function (Faker\Generator $faker) {
+    return [
+        'file_path' => $faker->sentence,
+        'wysiwygable_id' => $faker->randomNumber(5),
+        'wysiwygable_type' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

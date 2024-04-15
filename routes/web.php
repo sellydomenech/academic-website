@@ -273,3 +273,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('wysiwyg-media')->name('wysiwyg-media/')->group(static function() {
+            Route::get('/',                                             'WysiwygMediaController@index')->name('index');
+            Route::get('/create',                                       'WysiwygMediaController@create')->name('create');
+            Route::post('/',                                            'WysiwygMediaController@store')->name('store');
+            Route::get('/{wysiwygMedia}/edit',                          'WysiwygMediaController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'WysiwygMediaController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{wysiwygMedia}',                              'WysiwygMediaController@update')->name('update');
+            Route::delete('/{wysiwygMedia}',                            'WysiwygMediaController@destroy')->name('destroy');
+        });
+    });
+});
