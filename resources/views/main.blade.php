@@ -66,7 +66,20 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Kontak</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Bergabung<i class="fa fa-arrow-right ms-3"></i></a>
+            {{-- <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"><i class="fa fa-arrow-right ms-3"></i></a> --}}
+            @if (Route::has('login'))
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                    @auth
+                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Beranda</a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-5 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Masuk<i class="fa fa-arrow-right ms-3"></i></a>
+
+                        {{-- @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn btn-primary py-4 px-lg-5 ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register<i class="fa fa-arrow-right ms-3"></i></a>
+                        @endif --}}
+                    @endauth
+                </div>
+            @endif
         </div>
     </nav>
     <!-- Navbar End -->
@@ -90,7 +103,7 @@
                                 <p class="fs-5 text-white mb-4 pb+2"></p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Baca Selengkapnya
                                 </a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Bergabung</a>
+                                {{-- <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Bergabung</a> --}}
                             </div>
                         </div>
                     </div>
@@ -110,7 +123,7 @@
                                 <p class="fs-5 text-white mb-4 pb+2"></p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Baca Selengkapnya
                                 </a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Bergabung</a>
+                                {{-- <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Bergabung</a> --}}
                             </div>
                         </div>
                     </div>
