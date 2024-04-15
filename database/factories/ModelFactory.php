@@ -134,3 +134,12 @@ $factory->define(App\Models\Medium::class, static function (Faker\Generator $fak
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Migration::class, static function (Faker\Generator $faker) {
+    return [
+        'migration' => $faker->sentence,
+        'batch' => $faker->randomNumber(5),
+        
+        
+    ];
+});

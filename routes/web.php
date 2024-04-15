@@ -168,3 +168,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('migrations')->name('migrations/')->group(static function() {
+            Route::get('/',                                             'MigrationsController@index')->name('index');
+            Route::get('/create',                                       'MigrationsController@create')->name('create');
+            Route::post('/',                                            'MigrationsController@store')->name('store');
+            Route::get('/{migration}/edit',                             'MigrationsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'MigrationsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{migration}',                                 'MigrationsController@update')->name('update');
+            Route::delete('/{migration}',                               'MigrationsController@destroy')->name('destroy');
+        });
+    });
+});

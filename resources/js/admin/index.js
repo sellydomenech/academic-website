@@ -9,3 +9,4 @@ import './admin-password-reset';
 import './admin-user';
 import './failed-job';
 import './medium';
+import './migration';
