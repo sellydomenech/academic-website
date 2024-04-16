@@ -303,3 +303,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('students')->name('students/')->group(static function() {
+            Route::get('/',                                             'StudentController@index')->name('index');
+            Route::get('/create',                                       'StudentController@create')->name('create');
+            Route::post('/',                                            'StudentController@store')->name('store');
+            Route::get('/{student}/edit',                               'StudentController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'StudentController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{student}',                                   'StudentController@update')->name('update');
+            Route::delete('/{student}',                                 'StudentController@destroy')->name('destroy');
+        });
+    });
+});

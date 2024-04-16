@@ -235,3 +235,48 @@ $factory->define(App\Models\WysiwygMedia::class, static function (Faker\Generato
         
     ];
 });
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Student::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Student::class, static function (Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'nick_name' => $faker->sentence,
+        'registration_number' => $faker->sentence,
+        'gender' => $faker->sentence,
+        'place_of_birth' => $faker->sentence,
+        'date_of_birth' => $faker->date(),
+        'address' => $faker->text(),
+        'email' => $faker->email,
+        'status' => $faker->sentence,
+        'child' => $faker->randomNumber(5),
+        'number_of_children' => $faker->randomNumber(5),
+        'father_name' => $faker->sentence,
+        'father_occupation' => $faker->sentence,
+        'father_phone_number' => $faker->randomNumber(5),
+        'mother_name' => $faker->sentence,
+        'mother_occupation' => $faker->sentence,
+        'mother_phone_number' => $faker->randomNumber(5),
+        'family_address' => $faker->text(),
+        'emergency_contact_name' => $faker->sentence,
+        'emergency_contact_occupation' => $faker->sentence,
+        'emergency_contact_phone_number' => $faker->randomNumber(5),
+        'emergency_contact_address' => $faker->text(),
+        'registration_date' => $faker->date(),
+        'start_date' => $faker->date(),
+        'end_date' => $faker->date(),
+        'class_id' => $faker->sentence,
+        'login_id' => $faker->sentence,
+        'enabled' => $faker->boolean(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

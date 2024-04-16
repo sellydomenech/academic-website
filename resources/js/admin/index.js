@@ -18,3 +18,4 @@ import './role-has-permission';
 import './user';
 import './wysiwyg-media';
 import './permission';
+import './student';
