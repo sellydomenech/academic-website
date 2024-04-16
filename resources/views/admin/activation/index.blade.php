@@ -49,6 +49,7 @@
                                             </label>
                                         </th>
 
+                                        <th is='sortable' :column="'id'">{{ trans('admin.activation.columns.id') }}</th>
                                         <th is='sortable' :column="'email'">{{ trans('admin.activation.columns.email') }}</th>
                                         <th is='sortable' :column="'token'">{{ trans('admin.activation.columns.token') }}</th>
                                         <th is='sortable' :column="'used'">{{ trans('admin.activation.columns.used') }}</th>
@@ -56,7 +57,7 @@
                                         <th></th>
                                     </tr>
                                     <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
-                                        <td class="bg-bulk-info d-table-cell text-center" colspan="5">
+                                        <td class="bg-bulk-info d-table-cell text-center" colspan="6">
                                             <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/activations')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
                                                         href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
@@ -75,7 +76,8 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.email }}</td>
+                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.email }}</td>
                                         <td>@{{ item.token }}</td>
                                         <td>@{{ item.used }}</td>
                                         

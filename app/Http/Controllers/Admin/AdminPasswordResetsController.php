@@ -37,10 +37,10 @@ class AdminPasswordResetsController extends Controller
             $request,
 
             // set columns to query
-            ['email', 'token'],
+            ['id', 'email', 'token'],
 
             // set columns to searchIn
-            ['email', 'token']
+            ['id', 'email', 'token']
         );
 
         if ($request->ajax()) {

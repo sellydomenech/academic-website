@@ -17,3 +17,4 @@ import './personal-access-token';
 import './role-has-permission';
 import './user';
 import './wysiwyg-media';
+import './permission';

@@ -25,7 +25,7 @@ class IndexRoleHasPermission extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:permission_id,role_id|nullable',
+            'orderBy' => 'in:id,permission_id,role_id|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

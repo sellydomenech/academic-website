@@ -25,7 +25,7 @@ class IndexPasswordResetToken extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:email,token|nullable',
+            'orderBy' => 'in:id,email,token|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

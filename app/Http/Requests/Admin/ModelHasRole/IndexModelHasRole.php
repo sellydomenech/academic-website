@@ -25,7 +25,7 @@ class IndexModelHasRole extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:role_id,model_type,model_id|nullable',
+            'orderBy' => 'in:id,role_id,model_type,model_id|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

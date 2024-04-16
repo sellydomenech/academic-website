@@ -25,7 +25,7 @@ class IndexAdminActivation extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:email,token,used|nullable',
+            'orderBy' => 'in:id,email,token,used|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

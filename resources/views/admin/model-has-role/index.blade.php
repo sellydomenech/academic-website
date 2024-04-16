@@ -1,20 +1,20 @@
 @extends('brackets/admin-ui::admin.layout.default')
 
-@section('title', trans('admin.model-has-role.actions.index'))
+@section('title', trans('admin.password-reset-token.actions.index'))
 
 @section('body')
 
-    <model-has-role-listing
+    <password-reset-token-listing
         :data="{{ $data->toJson() }}"
-        :url="'{{ url('admin/model-has-roles') }}'"
+        :url="'{{ url('admin/password-reset-tokens') }}'"
         inline-template>
 
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> {{ trans('admin.model-has-role.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/model-has-roles/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.model-has-role.actions.create') }}</a>
+                        <i class="fa fa-align-justify"></i> {{ trans('admin.password-reset-token.actions.index') }}
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/password-reset-tokens/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.password-reset-token.actions.create') }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -49,19 +49,19 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'role_id'">{{ trans('admin.model-has-role.columns.role_id') }}</th>
-                                        <th is='sortable' :column="'model_type'">{{ trans('admin.model-has-role.columns.model_type') }}</th>
-                                        <th is='sortable' :column="'model_id'">{{ trans('admin.model-has-role.columns.model_id') }}</th>
+                                        <th is='sortable' :column="'id'">{{ trans('admin.password-reset-token.columns.id') }}</th>
+                                        <th is='sortable' :column="'email'">{{ trans('admin.password-reset-token.columns.email') }}</th>
+                                        <th is='sortable' :column="'token'">{{ trans('admin.password-reset-token.columns.token') }}</th>
 
                                         <th></th>
                                     </tr>
                                     <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
                                         <td class="bg-bulk-info d-table-cell text-center" colspan="5">
-                                            <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/model-has-roles')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
+                                            <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/password-reset-tokens')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
                                                         href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
                                             <span class="pull-right pr-2">
-                                                <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/model-has-roles/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
+                                                <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/password-reset-tokens/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
                                             </span>
 
                                         </td>
@@ -75,9 +75,9 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.role_id }}</td>
-                                        <td>@{{ item.model_type }}</td>
-                                        <td>@{{ item.model_id }}</td>
+                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.email }}</td>
+                                        <td>@{{ item.token }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
@@ -106,13 +106,13 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/model-has-roles/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.model-has-role.actions.create') }}</a>
+                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/password-reset-tokens/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.password-reset-token.actions.create') }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </model-has-role-listing>
+    </password-reset-token-listing>
 
 @endsection

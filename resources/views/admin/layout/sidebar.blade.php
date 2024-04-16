@@ -17,6 +17,7 @@
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/role-has-permissions') }}"><i class="nav-icon icon-globe"></i> {{ trans('admin.role-has-permission.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/users') }}"><i class="nav-icon icon-diamond"></i> {{ trans('admin.user.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/wysiwyg-media') }}"><i class="nav-icon icon-energy"></i> {{ trans('admin.wysiwyg-media.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/permissions') }}"><i class="nav-icon icon-compass"></i> {{ trans('admin.permission.title') }}</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>

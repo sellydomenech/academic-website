@@ -37,10 +37,10 @@ class ActivationsController extends Controller
             $request,
 
             // set columns to query
-            ['email', 'token', 'used'],
+            ['id', 'email', 'token', 'used'],
 
             // set columns to searchIn
-            ['email', 'token']
+            ['id', 'email', 'token']
         );
 
         if ($request->ajax()) {

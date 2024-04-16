@@ -37,10 +37,10 @@ class ModelHasRolesController extends Controller
             $request,
 
             // set columns to query
-            ['role_id', 'model_type', 'model_id'],
+            ['id', 'role_id', 'model_type', 'model_id'],
 
             // set columns to searchIn
-            ['model_type']
+            ['id', 'model_type']
         );
 
         if ($request->ajax()) {

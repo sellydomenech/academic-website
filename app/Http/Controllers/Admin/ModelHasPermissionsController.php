@@ -37,10 +37,10 @@ class ModelHasPermissionsController extends Controller
             $request,
 
             // set columns to query
-            ['permission_id', 'model_type', 'model_id'],
+            ['id', 'permission_id', 'model_type', 'model_id'],
 
             // set columns to searchIn
-            ['model_type']
+            ['id', 'model_type']
         );
 
         if ($request->ajax()) {

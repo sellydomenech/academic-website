@@ -1,20 +1,20 @@
 @extends('brackets/admin-ui::admin.layout.default')
 
-@section('title', trans('admin.admin-activation.actions.index'))
+@section('title', trans('admin.admin-password-reset.actions.index'))
 
 @section('body')
 
-    <admin-activation-listing
+    <admin-password-reset-listing
         :data="{{ $data->toJson() }}"
-        :url="'{{ url('admin/admin-activations') }}'"
+        :url="'{{ url('admin/admin-password-resets') }}'"
         inline-template>
 
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> {{ trans('admin.admin-activation.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/admin-activations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.admin-activation.actions.create') }}</a>
+                        <i class="fa fa-align-justify"></i> {{ trans('admin.admin-password-reset.actions.index') }}
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/admin-password-resets/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.admin-password-reset.actions.create') }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -49,19 +49,19 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'email'">{{ trans('admin.admin-activation.columns.email') }}</th>
-                                        <th is='sortable' :column="'token'">{{ trans('admin.admin-activation.columns.token') }}</th>
-                                        <th is='sortable' :column="'used'">{{ trans('admin.admin-activation.columns.used') }}</th>
+                                        <th is='sortable' :column="'id'">{{ trans('admin.admin-password-reset.columns.id') }}</th>
+                                        <th is='sortable' :column="'email'">{{ trans('admin.admin-password-reset.columns.email') }}</th>
+                                        <th is='sortable' :column="'token'">{{ trans('admin.admin-password-reset.columns.token') }}</th>
 
                                         <th></th>
                                     </tr>
                                     <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
                                         <td class="bg-bulk-info d-table-cell text-center" colspan="5">
-                                            <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/admin-activations')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
+                                            <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/admin-password-resets')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
                                                         href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
                                             <span class="pull-right pr-2">
-                                                <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/admin-activations/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
+                                                <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/admin-password-resets/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
                                             </span>
 
                                         </td>
@@ -75,9 +75,9 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.email }}</td>
+                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.email }}</td>
                                         <td>@{{ item.token }}</td>
-                                        <td>@{{ item.used }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
@@ -106,13 +106,13 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/admin-activations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.admin-activation.actions.create') }}</a>
+                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/admin-password-resets/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.admin-password-reset.actions.create') }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </admin-activation-listing>
+    </admin-password-reset-listing>
 
 @endsection
