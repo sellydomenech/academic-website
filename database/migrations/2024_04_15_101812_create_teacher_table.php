@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('nik');
             $table->date('date_of_birth')->nullable();
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->text('address');
             $table->string('email')->nullable();
             $table->date('registration_date')->nullable();

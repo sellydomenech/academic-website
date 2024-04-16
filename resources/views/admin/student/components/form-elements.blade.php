@@ -118,7 +118,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('father_phone_number'), 'has-success': fields.father_phone_number && fields.father_phone_number.valid }">
     <label for="father_phone_number" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.student.columns.father_phone_number') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.father_phone_number" v-validate="'integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('father_phone_number'), 'form-control-success': fields.father_phone_number && fields.father_phone_number.valid}" id="father_phone_number" name="father_phone_number" placeholder="{{ trans('admin.student.columns.father_phone_number') }}">
+        <input type="text" v-model="form.father_phone_number" v-validate="'numeric'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('father_phone_number'), 'form-control-success': fields.father_phone_number && fields.father_phone_number.valid}" id="father_phone_number" name="father_phone_number" placeholder="{{ trans('admin.student.columns.father_phone_number') }}">
         <div v-if="errors.has('father_phone_number')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('father_phone_number') }}</div>
     </div>
 </div>
@@ -142,7 +142,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('mother_phone_number'), 'has-success': fields.mother_phone_number && fields.mother_phone_number.valid }">
     <label for="mother_phone_number" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.student.columns.mother_phone_number') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.mother_phone_number" v-validate="'integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('mother_phone_number'), 'form-control-success': fields.mother_phone_number && fields.mother_phone_number.valid}" id="mother_phone_number" name="mother_phone_number" placeholder="{{ trans('admin.student.columns.mother_phone_number') }}">
+        <input type="text" v-model="form.mother_phone_number" v-validate="'numeric'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('mother_phone_number'), 'form-control-success': fields.mother_phone_number && fields.mother_phone_number.valid}" id="mother_phone_number" name="mother_phone_number" placeholder="{{ trans('admin.student.columns.mother_phone_number') }}">
         <div v-if="errors.has('mother_phone_number')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('mother_phone_number') }}</div>
     </div>
 </div>
@@ -176,7 +176,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('emergency_contact_phone_number'), 'has-success': fields.emergency_contact_phone_number && fields.emergency_contact_phone_number.valid }">
     <label for="emergency_contact_phone_number" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.student.columns.emergency_contact_phone_number') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.emergency_contact_phone_number" v-validate="'integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('emergency_contact_phone_number'), 'form-control-success': fields.emergency_contact_phone_number && fields.emergency_contact_phone_number.valid}" id="emergency_contact_phone_number" name="emergency_contact_phone_number" placeholder="{{ trans('admin.student.columns.emergency_contact_phone_number') }}">
+        <input type="text" v-model="form.emergency_contact_phone_number" v-validate="'numeric'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('emergency_contact_phone_number'), 'form-control-success': fields.emergency_contact_phone_number && fields.emergency_contact_phone_number.valid}" id="emergency_contact_phone_number" name="emergency_contact_phone_number" placeholder="{{ trans('admin.student.columns.emergency_contact_phone_number') }}">
         <div v-if="errors.has('emergency_contact_phone_number')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('emergency_contact_phone_number') }}</div>
     </div>
 </div>

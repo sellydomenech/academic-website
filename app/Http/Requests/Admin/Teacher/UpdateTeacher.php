@@ -30,7 +30,7 @@ class UpdateTeacher extends FormRequest
             'last_name' => ['sometimes', 'string'],
             'nik' => ['sometimes', 'string'],
             'date_of_birth' => ['nullable', 'date'],
-            'phone_number' => ['sometimes', 'integer'],
+            'phone_number' => ['sometimes', 'string'],
             'address' => ['sometimes', 'string'],
             'email' => ['nullable', 'email', 'string'],
             'registration_date' => ['nullable', 'date'],

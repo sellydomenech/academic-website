@@ -37,10 +37,10 @@ class StudentController extends Controller
             $request,
 
             // set columns to query
-            [''],
+            ['id', 'first_name', 'last_name', 'nick_name', 'registration_number', 'gender', 'place_of_birth', 'date_of_birth', 'email', 'status', 'child', 'number_of_children', 'father_name', 'father_occupation', 'father_phone_number', 'mother_name', 'mother_occupation', 'mother_phone_number', 'emergency_contact_name', 'emergency_contact_occupation', 'emergency_contact_phone_number', 'registration_date', 'start_date', 'end_date', 'class_id', 'login_id', 'enabled'],
 
             // set columns to searchIn
-            ['']
+            ['id', 'first_name', 'last_name', 'nick_name', 'registration_number', 'gender', 'place_of_birth', 'address', 'email', 'status', 'father_name', 'father_occupation', 'father_phone_number', 'mother_name', 'mother_occupation', 'mother_phone_number', 'family_address', 'emergency_contact_name', 'emergency_contact_occupation', 'emergency_contact_phone_number', 'emergency_contact_address', 'class_id', 'login_id']
         );
 
         if ($request->ajax()) {

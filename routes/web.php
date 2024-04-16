@@ -307,6 +307,96 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('class-groups')->name('class-groups/')->group(static function() {
+            Route::get('/',                                             'ClassGroupController@index')->name('index');
+            Route::get('/create',                                       'ClassGroupController@create')->name('create');
+            Route::post('/',                                            'ClassGroupController@store')->name('store');
+            Route::get('/{classGroup}/edit',                            'ClassGroupController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ClassGroupController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{classGroup}',                                'ClassGroupController@update')->name('update');
+            Route::delete('/{classGroup}',                              'ClassGroupController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('subjects')->name('subjects/')->group(static function() {
+            Route::get('/',                                             'SubjectController@index')->name('index');
+            Route::get('/create',                                       'SubjectController@create')->name('create');
+            Route::post('/',                                            'SubjectController@store')->name('store');
+            Route::get('/{subject}/edit',                               'SubjectController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'SubjectController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{subject}',                                   'SubjectController@update')->name('update');
+            Route::delete('/{subject}',                                 'SubjectController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('class-has-subjects')->name('class-has-subjects/')->group(static function() {
+            Route::get('/',                                             'ClassHasSubjectsController@index')->name('index');
+            Route::get('/create',                                       'ClassHasSubjectsController@create')->name('create');
+            Route::post('/',                                            'ClassHasSubjectsController@store')->name('store');
+            Route::get('/{classHasSubject}/edit',                       'ClassHasSubjectsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ClassHasSubjectsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{classHasSubject}',                           'ClassHasSubjectsController@update')->name('update');
+            Route::delete('/{classHasSubject}',                         'ClassHasSubjectsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('student-has-classes')->name('student-has-classes/')->group(static function() {
+            Route::get('/',                                             'StudentHasClassesController@index')->name('index');
+            Route::get('/create',                                       'StudentHasClassesController@create')->name('create');
+            Route::post('/',                                            'StudentHasClassesController@store')->name('store');
+            Route::get('/{studentHasClass}/edit',                       'StudentHasClassesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'StudentHasClassesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{studentHasClass}',                           'StudentHasClassesController@update')->name('update');
+            Route::delete('/{studentHasClass}',                         'StudentHasClassesController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('raports')->name('raports/')->group(static function() {
+            Route::get('/',                                             'RaportController@index')->name('index');
+            Route::get('/create',                                       'RaportController@create')->name('create');
+            Route::post('/',                                            'RaportController@store')->name('store');
+            Route::get('/{raport}/edit',                                'RaportController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'RaportController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{raport}',                                    'RaportController@update')->name('update');
+            Route::delete('/{raport}',                                  'RaportController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('raport-has-marks')->name('raport-has-marks/')->group(static function() {
+            Route::get('/',                                             'RaportHasMarksController@index')->name('index');
+            Route::get('/create',                                       'RaportHasMarksController@create')->name('create');
+            Route::post('/',                                            'RaportHasMarksController@store')->name('store');
+            Route::get('/{raportHasMark}/edit',                         'RaportHasMarksController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'RaportHasMarksController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{raportHasMark}',                             'RaportHasMarksController@update')->name('update');
+            Route::delete('/{raportHasMark}',                           'RaportHasMarksController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('students')->name('students/')->group(static function() {
             Route::get('/',                                             'StudentController@index')->name('index');
             Route::get('/create',                                       'StudentController@create')->name('create');

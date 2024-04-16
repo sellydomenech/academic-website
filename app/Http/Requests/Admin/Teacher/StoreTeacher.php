@@ -30,7 +30,7 @@ class StoreTeacher extends FormRequest
             'last_name' => ['required', 'string'],
             'nik' => ['required', 'string'],
             'date_of_birth' => ['nullable', 'date'],
-            'phone_number' => ['required', 'integer'],
+            'phone_number' => ['required', 'string'],
             'address' => ['required', 'string'],
             'email' => ['nullable', 'email', 'string'],
             'registration_date' => ['nullable', 'date'],

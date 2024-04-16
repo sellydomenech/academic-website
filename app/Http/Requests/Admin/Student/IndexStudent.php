@@ -25,7 +25,7 @@ class IndexStudent extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:|nullable',
+            'orderBy' => 'in:id,first_name,last_name,nick_name,registration_number,gender,place_of_birth,date_of_birth,email,status,child,number_of_children,father_name,father_occupation,father_phone_number,mother_name,mother_occupation,mother_phone_number,emergency_contact_name,emergency_contact_occupation,emergency_contact_phone_number,registration_date,start_date,end_date,class_id,login_id,enabled|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

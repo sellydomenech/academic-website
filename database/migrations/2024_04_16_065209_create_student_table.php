@@ -27,14 +27,14 @@ return new class extends Migration
             $table->integer('number_of_children')->nullable();
             $table->string('father_name')->nullable();
             $table->string('father_occupation')->nullable();
-            $table->integer('father_phone_number')->nullable();
+            $table->string('father_phone_number')->nullable();
             $table->string('mother_name')->nullable();
             $table->string('mother_occupation')->nullable();
-            $table->integer('mother_phone_number')->nullable();
+            $table->string('mother_phone_number')->nullable();
             $table->text('family_address')->nullable();
             $table->string('emergency_contact_name')->nullable();
             $table->string('emergency_contact_occupation')->nullable();
-            $table->integer('emergency_contact_phone_number')->nullable();
+            $table->string('emergency_contact_phone_number')->nullable();
             $table->text('emergency_contact_address')->nullable();
             $table->date('registration_date')->nullable();
             $table->date('start_date')->nullable();

@@ -236,8 +236,80 @@ $factory->define(App\Models\WysiwygMedia::class, static function (Faker\Generato
     ];
 });
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Student::class, static function (Faker\Generator $faker) {
+$factory->define(App\Models\ClassGroup::class, static function (Faker\Generator $faker) {
     return [
+        'class_name' => $faker->sentence,
+        'start_date' => $faker->date(),
+        'end_date' => $faker->date(),
+        'semester' => $faker->sentence,
+        'year_of_study' => $faker->sentence,
+        'teacher_id' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Subject::class, static function (Faker\Generator $faker) {
+    return [
+        'subject_name' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\ClassHasSubject::class, static function (Faker\Generator $faker) {
+    return [
+        'class_group_id' => $faker->randomNumber(5),
+        'subject_id' => $faker->randomNumber(5),
+        'day' => $faker->sentence,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\StudentHasClass::class, static function (Faker\Generator $faker) {
+    return [
+        'student_id' => $faker->randomNumber(5),
+        'class_group_id' => $faker->randomNumber(5),
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Raport::class, static function (Faker\Generator $faker) {
+    return [
+        'student_id' => $faker->randomNumber(5),
+        'class_group_id' => $faker->randomNumber(5),
+        'given_in' => $faker->sentence,
+        'signed_at' => $faker->date(),
+        'published' => $faker->boolean(),
+        'moral_religious' => $faker->text(),
+        'social_emotion' => $faker->text(),
+        'speaking' => $faker->text(),
+        'cognitive' => $faker->text(),
+        'physical' => $faker->text(),
+        'art' => $faker->text(),
+        'sick' => $faker->randomNumber(5),
+        'permission' => $faker->randomNumber(5),
+        'absence' => $faker->randomNumber(5),
+        'note' => $faker->text(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\RaportHasMark::class, static function (Faker\Generator $faker) {
+    return [
+        'raport_id' => $faker->randomNumber(5),
+        'subject_id' => $faker->randomNumber(5),
+        'mark' => $faker->sentence,
+        'note' => $faker->text(),
         
         
     ];
@@ -259,14 +331,14 @@ $factory->define(App\Models\Student::class, static function (Faker\Generator $fa
         'number_of_children' => $faker->randomNumber(5),
         'father_name' => $faker->sentence,
         'father_occupation' => $faker->sentence,
-        'father_phone_number' => $faker->randomNumber(5),
+        'father_phone_number' => $faker->sentence,
         'mother_name' => $faker->sentence,
         'mother_occupation' => $faker->sentence,
-        'mother_phone_number' => $faker->randomNumber(5),
+        'mother_phone_number' => $faker->sentence,
         'family_address' => $faker->text(),
         'emergency_contact_name' => $faker->sentence,
         'emergency_contact_occupation' => $faker->sentence,
-        'emergency_contact_phone_number' => $faker->randomNumber(5),
+        'emergency_contact_phone_number' => $faker->sentence,
         'emergency_contact_address' => $faker->text(),
         'registration_date' => $faker->date(),
         'start_date' => $faker->date(),

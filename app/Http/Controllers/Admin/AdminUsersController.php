@@ -82,6 +82,8 @@ class AdminUsersController extends Controller
     {
         $this->authorize('admin.admin-user.create');
 
+        echo Role::get();
+
         return view('admin.admin-user.create', [
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::get(),
@@ -142,7 +144,7 @@ class AdminUsersController extends Controller
         return view('admin.admin-user.edit', [
             'adminUser' => $adminUser,
             'activation' => Config::get('admin-auth.activation_enabled'),
-            'roles' => Role::where('guard_name', $this->guard)->get(),
+            'roles' => Role::get(),
         ]);
     }
 
