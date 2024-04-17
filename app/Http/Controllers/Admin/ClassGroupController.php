@@ -86,22 +86,21 @@ class ClassGroupController extends Controller
 
         $results = DB::table('teacher')
         ->select(
-            DB::raw('concat(first_name,  " ", last_name) as full_name'),
+            DB::raw('id as teacher_id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
         )
         ->where('enabled', true)
         ->get();
-
-
-        // $results = DB::raw("SELECT id, concat(first_name, ' ', last_name) as full_name FROM teacher WHERE 'enabled'=1");
-        // ->get();
 
         if ($request->ajax()) {
             return response()->json($results);
         }
 
+        $teacher_id = '';
+
         return view('admin.class-group.create', [
-            // 'activation' => Config::get('admin-auth.activation_enabled'),
             'teachers' => $results,
+            'teacher_id' => '2'
         ]);
     }
 
@@ -118,6 +117,7 @@ class ClassGroupController extends Controller
 
         // Store the ClassGroup
         $classGroup = ClassGroup::create($sanitized);
+        
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/class-groups'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -147,20 +147,41 @@ class ClassGroupController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(ClassGroup $classGroup)
+    public function edit(IndexClassGroup $request, ClassGroup $classGroup)
     {
         $this->authorize('admin.class-group.edit', $classGroup);
+        
         $results = DB::table('teacher')
-        ->where('enabled', true)
+        ->select(
+            DB::raw('id as teacher_id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
         ->get();
 
         if ($request->ajax()) {
             return response()->json($results);
         }
 
+        $teacher_id = null;
+
+        // if (!empty($this->teacher_id)) {
+        $teacher_id = DB::table('teacher')
+        ->select(
+            DB::raw('id as teacher_id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
+        ->where('id', 2)
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($teacher_id);
+        }
+    // }
+
         return view('admin.class-group.edit', [
             'classGroup' => $classGroup,
             'teachers' => $results,
+            'teacher_id' => '2'
         ]);
     }
 

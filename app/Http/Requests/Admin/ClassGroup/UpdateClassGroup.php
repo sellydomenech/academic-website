@@ -31,7 +31,7 @@ class UpdateClassGroup extends FormRequest
             'end_date' => ['nullable', 'date'],
             'semester' => ['nullable', 'string'],
             'year_of_study' => ['nullable', 'string'],
-            'teacher_id' => ['nullable', 'string'],
+            'teacher_id' => ['nullable'],
             
         ];
     }
@@ -49,5 +49,11 @@ class UpdateClassGroup extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    protected function prepareForValidation()
+    {
+        if (!empty($this->teacher_id))
+            $this->merge(['teacher_id'=> $this->teacher_id['teacher_id']]);
     }
 }

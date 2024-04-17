@@ -21,8 +21,11 @@ class CreateClassGroupTables extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('semester')->nullable();
-            $table->string('year_of_study')->nullable(); 
-            $table->string('teacher_id')->nullable();// For MySQL 8.0 use string('guard_name', 125);
+            $table->string('year_of_study')->nullable();
+            $table->unsignedInteger('teacher_id');
+            $table->foreign('teacher_id')
+                ->references('id') // class id
+                ->on('teacher');
             $table->timestamps();
         });
 

@@ -38,8 +38,8 @@
                                     </div>
                                 </div>
                             </form>
-
-                            <table class="table table-hover table-listing">
+                        <div style="overflow-x:auto;">
+                            <table class="table table-hover table-listing" >
                                 <thead>
                                     <tr>
                                         <th class="bulk-checkbox">
