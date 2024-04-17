@@ -27,7 +27,7 @@
     <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
         <div class="input-group input-group--custom">
             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-            <datetime v-model="form.signed_at" :config="datePickerConfig" v-validate="'date_format:yyyy-MM-dd HH:mm:ss'" class="flatpickr" :class="{'form-control-danger': errors.has('signed_at'), 'form-control-success': fields.signed_at && fields.signed_at.valid}" id="signed_at" name="signed_at" placeholder="{{ trans('brackets/admin-ui::admin.forms.select_a_date') }}"></datetime>
+            <datetime v-model="form.signed_at" :config="datePickerConfig"  class="flatpickr" :class="{'form-control-danger': errors.has('signed_at'), 'form-control-success': fields.signed_at && fields.signed_at.valid}" id="signed_at" name="signed_at" placeholder="{{ trans('brackets/admin-ui::admin.forms.select_a_date') }}"></datetime>
         </div>
         <div v-if="errors.has('signed_at')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('signed_at') }}</div>
     </div>
