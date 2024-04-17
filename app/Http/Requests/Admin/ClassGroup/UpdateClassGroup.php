@@ -53,7 +53,7 @@ class UpdateClassGroup extends FormRequest
 
     protected function prepareForValidation()
     {
-        if (!empty($this->teacher_id))
-            $this->merge(['teacher_id'=> $this->teacher_id['teacher_id']]);
+        if (!empty($this->teacher_selected))
+            $this->merge(['teacher_id'=> $this->teacher_selected['id']]);
     }
 }

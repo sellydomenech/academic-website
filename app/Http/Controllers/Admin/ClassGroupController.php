@@ -86,7 +86,7 @@ class ClassGroupController extends Controller
 
         $results = DB::table('teacher')
         ->select(
-            DB::raw('id as teacher_id'),
+            DB::raw('id as id'),
             DB::raw('concat(first_name,  " ", last_name) as name'),
         )
         ->where('enabled', true)
@@ -96,11 +96,8 @@ class ClassGroupController extends Controller
             return response()->json($results);
         }
 
-        $teacher_id = '';
-
         return view('admin.class-group.create', [
-            'teachers' => $results,
-            'teacher_id' => '2'
+            'teachers' => $results
         ]);
     }
 
@@ -153,7 +150,7 @@ class ClassGroupController extends Controller
         
         $results = DB::table('teacher')
         ->select(
-            DB::raw('id as teacher_id'),
+            DB::raw('id as id'),
             DB::raw('concat(first_name,  " ", last_name) as name'),
         )
         ->get();
@@ -162,26 +159,24 @@ class ClassGroupController extends Controller
             return response()->json($results);
         }
 
-        $teacher_id = null;
-
         // if (!empty($this->teacher_id)) {
-        $teacher_id = DB::table('teacher')
+        $selectedTeacher = DB::table('teacher')
         ->select(
-            DB::raw('id as teacher_id'),
+            DB::raw('id as id'),
             DB::raw('concat(first_name,  " ", last_name) as name'),
         )
-        ->where('id', 2)
+        ->where('id', $classGroup['teacher_id'])
         ->get();
 
         if ($request->ajax()) {
-            return response()->json($teacher_id);
+            return response()->json($selectedTeacher);
         }
-    // }
+        
+        $classGroup->teacher_selected = $selectedTeacher;
 
         return view('admin.class-group.edit', [
             'classGroup' => $classGroup,
             'teachers' => $results,
-            'teacher_id' => '2'
         ]);
     }
 
