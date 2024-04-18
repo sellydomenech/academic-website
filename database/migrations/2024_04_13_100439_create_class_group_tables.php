@@ -49,7 +49,7 @@ class CreateClassGroupTables extends Migration
                 ->on('subject')
                 ->onDelete('cascade');
             
-            $table->string('day');
+            $table->string('day')->nullable();;
         });
 
         Schema::create('student_has_classes', function (Blueprint $table) {

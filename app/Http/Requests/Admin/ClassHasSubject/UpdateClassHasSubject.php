@@ -28,7 +28,7 @@ class UpdateClassHasSubject extends FormRequest
         return [
             'class_group_id' => ['sometimes', 'integer'],
             'subject_id' => ['sometimes', 'integer'],
-            'day' => ['sometimes', 'string'],
+            'day' => ['nullable', 'string'],
             
         ];
     }
@@ -46,5 +46,20 @@ class UpdateClassHasSubject extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    protected function prepareForValidation()
+    { 
+        if (!empty($this->class_group_id)) {
+            $this->merge(['class_group_id'=> $this->class_group_selected[0]['id']]);
+          } else {
+            $this->merge(['class_group_id'=> $this->class_group_selected['id']]);
+          }
+
+        if (!empty($this->subject_id)) {
+            $this->merge(['subject_id'=> $this->subject_selected[0]['id']]);
+          } else {
+            $this->merge(['subject_id'=> $this->subject_selected['id']]);
+          }
     }
 }

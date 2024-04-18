@@ -28,7 +28,7 @@ class StoreClassHasSubject extends FormRequest
         return [
             'class_group_id' => ['required', 'integer'],
             'subject_id' => ['required', 'integer'],
-            'day' => ['required', 'string'],
+            'day' => ['nullable', 'string'],
             
         ];
     }
@@ -45,5 +45,15 @@ class StoreClassHasSubject extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    protected function prepareForValidation()
+    {
+        if (!empty($this->class_group_selected))
+            $this->merge(['class_group_id'=> $this->class_group_selected['id']]);
+
+        if (!empty($this->subject_selected))
+            $this->merge(['subject_id'=> $this->subject_selected['id']]);
+
     }
 }

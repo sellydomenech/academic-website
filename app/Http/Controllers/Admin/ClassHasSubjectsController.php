@@ -61,11 +61,49 @@ class ClassHasSubjectsController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(IndexClassHasSubject $request)
     {
         $this->authorize('admin.class-has-subject.create');
 
-        return view('admin.class-has-subject.create');
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $subjects = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($subjects);
+        }
+
+        $listOfDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
+        return view('admin.class-has-subject.create', [
+            'listOfClasses' => $results,
+            'listOfSubjects' => $subjects,
+            'listOfDays' => json_encode($listOfDays)
+        ]);
     }
 
     /**
@@ -110,13 +148,78 @@ class ClassHasSubjectsController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(ClassHasSubject $classHasSubject)
+    public function edit(IndexClassHasSubject $request, ClassHasSubject $classHasSubject)
     {
         $this->authorize('admin.class-has-subject.edit', $classHasSubject);
 
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $subjects = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($subjects);
+        }
+
+
+        // Selected Class Group and Subject
+        $selectedClassGroup = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->where('id', $classHasSubject['class_group_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedClassGroup);
+        }
+
+        $selectedSubject = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->where('id', $classHasSubject['subject_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedSubject);
+        }
+        $classHasSubject->class_group_selected = $selectedClassGroup;
+        $classHasSubject->subject_selected = $selectedSubject;
+        // $classHasSubject->day = array($classHasSubject['day']);
+
+        $listOfDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
 
         return view('admin.class-has-subject.edit', [
             'classHasSubject' => $classHasSubject,
+            'listOfClasses' => $results,
+            'listOfSubjects' => $subjects,
+            'listOfDays' => json_encode($listOfDays)
         ]);
     }
 
