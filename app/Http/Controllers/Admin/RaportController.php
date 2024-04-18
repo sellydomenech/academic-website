@@ -145,10 +145,13 @@ class RaportController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
+
     public function edit(IndexRaport $request, Raport $raport)
     {
         $this->authorize('admin.raport.edit', $raport);
 
+
+        // Jika mau menghilangkan class, hapus bawah
         $results = DB::table('class_group')
         ->select(
             DB::raw('id as id'),
@@ -160,6 +163,8 @@ class RaportController extends Controller
             return response()->json($results);
         }
 
+        
+        // Jika mau menghilangkan student, hapus bawah
         $student = DB::table('student')
         ->select(
             DB::raw('id as id'),

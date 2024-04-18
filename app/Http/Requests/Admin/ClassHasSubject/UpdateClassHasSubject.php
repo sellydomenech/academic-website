@@ -50,13 +50,17 @@ class UpdateClassHasSubject extends FormRequest
 
     protected function prepareForValidation()
     { 
-        if (!empty($this->class_group_id)) {
+          if (empty($this->class_group_selected)) {
+            $this->merge(['class_group_id'=> null]);
+        } elseif (count($this->class_group_selected) == 1) {
             $this->merge(['class_group_id'=> $this->class_group_selected[0]['id']]);
           } else {
             $this->merge(['class_group_id'=> $this->class_group_selected['id']]);
           }
 
-        if (!empty($this->subject_id)) {
+          if (empty($this->subject_selected)) {
+            $this->merge(['subject_id'=> null]);
+        } elseif (count($this->subject_selected) == 1) {
             $this->merge(['subject_id'=> $this->subject_selected[0]['id']]);
           } else {
             $this->merge(['subject_id'=> $this->subject_selected['id']]);

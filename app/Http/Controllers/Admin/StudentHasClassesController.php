@@ -61,11 +61,46 @@ class StudentHasClassesController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(IndexStudentHasClass $request)
     {
         $this->authorize('admin.student-has-class.create');
 
-        return view('admin.student-has-class.create');
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $student = DB::table('student')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($student);
+        }
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
+        return view('admin.student-has-class.create', [
+            'listOfClasses' => $results,
+            'listOfStudents' => $student,
+        ]);
     }
 
     /**
@@ -110,14 +145,79 @@ class StudentHasClassesController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(StudentHasClass $studentHasClass)
+    public function edit(IndexStudentHasClass $request, StudentHasClass $studentHasClass)
     {
         $this->authorize('admin.student-has-class.edit', $studentHasClass);
 
-
-        return view('admin.student-has-class.edit', [
-            'studentHasClass' => $studentHasClass,
-        ]);
+                // Jika mau menghilangkan class, hapus bawah
+                $results = DB::table('class_group')
+                ->select(
+                    DB::raw('id as id'),
+                    DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+                )
+                ->get();
+        
+                if ($request->ajax()) {
+                    return response()->json($results);
+                }
+        
+                
+                // Jika mau menghilangkan student, hapus bawah
+                $student = DB::table('student')
+                ->select(
+                    DB::raw('id as id'),
+                    DB::raw('concat(first_name,  " ", last_name) as name'),
+                )
+                ->get();
+        
+                if ($request->ajax()) {
+                    return response()->json($student);
+                }
+        
+        
+                // Selected Class Group and Subject
+                $selectedClassGroup = DB::table('class_group')
+                ->select(
+                    DB::raw('id as id'),
+                    DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+                )
+                ->where('id', $studentHasClass['class_group_id'])
+                ->get();
+        
+                if ($request->ajax()) {
+                    return response()->json($selectedClassGroup);
+                }
+        
+                $selectedStudent = DB::table('student')
+                ->select(
+                    DB::raw('id as id'),
+                    DB::raw('concat(first_name,  " ", last_name) as name'),
+                )
+                ->where('id', $studentHasClass['student_id'])
+                ->get();
+        
+                if ($request->ajax()) {
+                    return response()->json($selectedStudent);
+                }
+                $studentHasClass->class_group_selected = $selectedClassGroup;
+                $studentHasClass->student_selected = $selectedStudent;
+                // $classHasSubject->day = array($classHasSubject['day']);
+        
+                // $page = array(
+                //     [ 'id' => '1', 'name' => 'Sunday',],
+                //     [ 'id' => '2', 'name' => 'Monday',],
+                //     [ 'id' => '3', 'name' => 'Tuesday',],
+                //     [ 'id' => '4', 'name' => 'Wednesday',],
+                //     [ 'id' => '5', 'name' => 'Thursday',],
+                //     [ 'id' => '6', 'name' => 'Friday',],
+                //     [ 'id' => '7', 'name' => 'Saturday',],
+                // );
+        
+                return view('admin.student-has-class.edit', [
+                    'studentHasClass' => $studentHasClass,
+                    'listOfClasses' => $results,
+                    'listOfStudents' => $student,
+                ]);
     }
 
     /**
