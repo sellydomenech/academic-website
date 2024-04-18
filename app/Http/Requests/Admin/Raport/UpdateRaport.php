@@ -59,4 +59,20 @@ class UpdateRaport extends FormRequest
 
         return $sanitized;
     }
+
+    protected function prepareForValidation()
+    { 
+        if (!empty($this->class_group_id)) {
+            $this->merge(['class_group_id'=> $this->class_group_selected[0]['id']]);
+          } else {
+            $this->merge(['class_group_id'=> $this->class_group_selected['id']]);
+          }
+
+        if (!empty($this->student_id)) {
+            $this->merge(['student_id'=> $this->student_selected[0]['id']]);
+          } else {
+            $this->merge(['student_id'=> $this->student_selected['id']]);
+          }
+    }
+
 }

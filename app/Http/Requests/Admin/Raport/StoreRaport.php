@@ -58,4 +58,15 @@ class StoreRaport extends FormRequest
 
         return $sanitized;
     }
+    
+    protected function prepareForValidation()
+    {
+        if (!empty($this->class_group_selected))
+            $this->merge(['class_group_id'=> $this->class_group_selected['id']]);
+
+        if (!empty($this->student_selected))
+            $this->merge(['student_id'=> $this->student_selected['id']]);
+
+    }
+
 }

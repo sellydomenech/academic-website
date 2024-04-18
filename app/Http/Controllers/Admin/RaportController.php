@@ -61,11 +61,46 @@ class RaportController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(IndexRaport $request)
     {
         $this->authorize('admin.raport.create');
 
-        return view('admin.raport.create');
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $student = DB::table('student')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($student);
+        }
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
+        return view('admin.raport.create', [
+            'listOfClasses' => $results,
+            'listOfStudents' => $student,
+        ]);
     }
 
     /**
@@ -110,13 +145,75 @@ class RaportController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(Raport $raport)
+    public function edit(IndexRaport $request, Raport $raport)
     {
         $this->authorize('admin.raport.edit', $raport);
 
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $student = DB::table('student')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($student);
+        }
+
+
+        // Selected Class Group and Subject
+        $selectedClassGroup = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->where('id', $raport['class_group_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedClassGroup);
+        }
+
+        $selectedStudent = DB::table('student')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(first_name,  " ", last_name) as name'),
+        )
+        ->where('id', $raport['student_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedStudent);
+        }
+        $raport->class_group_selected = $selectedClassGroup;
+        $raport->student_selected = $selectedStudent;
+        // $classHasSubject->day = array($classHasSubject['day']);
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
 
         return view('admin.raport.edit', [
             'raport' => $raport,
+            'listOfClasses' => $results,
+            'listOfStudents' => $student,
         ]);
     }
 
