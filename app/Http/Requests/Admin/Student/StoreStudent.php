@@ -52,8 +52,8 @@ class StoreStudent extends FormRequest
             'registration_date' => ['nullable', 'date'],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
-            'class_id' => ['nullable', 'string'],
-            'login_id' => ['nullable', 'string'],
+            'class_id' => ['nullable', 'integer'],
+            'login_id' => ['nullable', 'integer'],
             'enabled' => ['required', 'boolean'],
             
         ];
@@ -72,4 +72,15 @@ class StoreStudent extends FormRequest
 
         return $sanitized;
     }
+
+    protected function prepareForValidation()
+    {
+        if (!empty($this->class_group_selected))
+            $this->merge(['class_id'=> $this->class_group_selected['id']]);
+
+        if (!empty($this->admin_user_selected))
+            $this->merge(['login_id'=> $this->admin_user_selected['id']]);
+
+    }
+
 }

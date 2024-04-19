@@ -52,8 +52,8 @@ class UpdateStudent extends FormRequest
             'registration_date' => ['nullable', 'date'],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
-            'class_id' => ['nullable', 'string'],
-            'login_id' => ['nullable', 'string'],
+            'class_id' => ['nullable', 'integer'],
+            'login_id' => ['nullable', 'integer'],
             'enabled' => ['sometimes', 'boolean'],
             
         ];
@@ -73,4 +73,24 @@ class UpdateStudent extends FormRequest
 
         return $sanitized;
     }
+
+    protected function prepareForValidation()
+    { 
+        if (empty($this->class_group_selected)) {
+            $this->merge(['class_id'=> null]);
+        } elseif (count($this->class_group_selected) == 1) {
+            $this->merge(['class_id'=> $this->class_group_selected[0]['id']]);
+          } else {
+            $this->merge(['class_id'=> $this->class_group_selected['id']]);
+          }
+
+          if (empty($this->admin_user_selected)) {
+            $this->merge(['login_id'=> null]);
+        } elseif (count($this->admin_user_selected) == 1) {
+            $this->merge(['login_id'=> $this->admin_user_selected[0]['id']]);
+          } else {
+            $this->merge(['login_id'=> $this->admin_user_selected['id']]);
+          }
+    }
+
 }

@@ -61,11 +61,48 @@ class StudentController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(IndexStudent $request)
     {
         $this->authorize('admin.student.create');
+        
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
 
-        return view('admin.student.create');
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $admin_users = DB::table('admin_users')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('email as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($admin_users);
+        }
+
+        // $student->day = array($student['day']);
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
+        return view('admin.student.create', [
+            'listOfClasses' => $results,
+            'listOfAdminUsers' => $admin_users,
+        ]);
     }
 
     /**
@@ -110,13 +147,75 @@ class StudentController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(Student $student)
+    public function edit(IndexStudent $request, Student $student)
     {
         $this->authorize('admin.student.edit', $student);
 
+        $results = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $admin_users = DB::table('admin_users')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('email as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($admin_users);
+        }
+
+
+        // Selected Class Group and Subject
+        $selectedClassGroup = DB::table('class_group')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('concat(class_name,  " - ", year_of_study, " semester ", semester) as name'),
+        )
+        ->where('id', $student['class_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedClassGroup);
+        }
+
+        $selectedAdminUser = DB::table('admin_users')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('email as name'),
+        )
+        ->where('id', $student['login_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedAdminUser);
+        }
+        $student->class_group_selected = $selectedClassGroup;
+        $student->admin_user_selected = $selectedAdminUser;
+        // $classHasSubject->day = array($classHasSubject['day']);
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
 
         return view('admin.student.edit', [
             'student' => $student,
+            'listOfClasses' => $results,
+            'listOfAdminUsers' => $admin_users,
         ]);
     }
 
