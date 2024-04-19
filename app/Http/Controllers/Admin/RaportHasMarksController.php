@@ -61,11 +61,44 @@ class RaportHasMarksController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(IndexRaportHasMark $request)
     {
         $this->authorize('admin.raport-has-mark.create');
 
-        return view('admin.raport-has-mark.create');
+        $results = DB::select("SELECT RAPORT.ID as id, CONCAT(student.first_name, ' ', student.last_name, ' - ', class_group.class_name, ' ', class_group.year_of_study, ' Semester ', class_group.semester) AS 'name'
+            FROM raport
+            LEFT JOIN student ON student.id = raport.student_id
+            LEFT JOIN class_group ON raport.class_group_id = class_group.id;");
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        $subjects = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($subjects);
+        }
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
+        return view('admin.raport-has-mark.create', [
+            'listOfRaports' => json_encode($results),
+            'listOfSubjects' => $subjects,
+        ]);
     }
 
     /**
@@ -110,13 +143,75 @@ class RaportHasMarksController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function edit(RaportHasMark $raportHasMark)
+    public function edit(IndexRaportHasMark $request, RaportHasMark $raportHasMark)
     {
         $this->authorize('admin.raport-has-mark.edit', $raportHasMark);
 
 
+        // Jika mau menghilangkan class, hapus bawah
+        $results = DB::select("SELECT RAPORT.ID as id, CONCAT(student.first_name, ' ', student.last_name, ' - ', class_group.class_name, ' ', class_group.year_of_study, ' Semester ', class_group.semester) AS 'name'
+            FROM raport
+            LEFT JOIN student ON student.id = raport.student_id
+            LEFT JOIN class_group ON raport.class_group_id = class_group.id;");
+
+        if ($request->ajax()) {
+            return response()->json($results);
+        }
+
+        
+        // Jika mau menghilangkan student, hapus bawah
+        $subjects = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($subjects);
+        }
+
+
+        // Selected Class Group and Subject
+        $selectedRaport = DB::select("SELECT RAPORT.ID as id, CONCAT(student.first_name, ' ', student.last_name, ' - ', class_group.class_name, ' ', class_group.year_of_study, ' Semester ', class_group.semester) AS 'name'
+            FROM raport
+            LEFT JOIN student ON student.id = raport.student_id
+            LEFT JOIN class_group ON raport.class_group_id = class_group.id
+            WHERE raport.id = :id;", ["id"=>$raportHasMark['raport_id']]);
+
+        if ($request->ajax()) {
+            return response()->json($selectedRaport);
+        }
+
+        $selectedSubject = DB::table('subject')
+        ->select(
+            DB::raw('id as id'),
+            DB::raw('subject_name as name'),
+        )
+        ->where('id', $raportHasMark['subject_id'])
+        ->get();
+
+        if ($request->ajax()) {
+            return response()->json($selectedSubject);
+        }
+        $raportHasMark->raport_selected = $selectedRaport;
+        $raportHasMark->subject_selected = $selectedSubject;
+        // $classHasSubject->day = array($classHasSubject['day']);
+
+        // $page = array(
+        //     [ 'id' => '1', 'name' => 'Sunday',],
+        //     [ 'id' => '2', 'name' => 'Monday',],
+        //     [ 'id' => '3', 'name' => 'Tuesday',],
+        //     [ 'id' => '4', 'name' => 'Wednesday',],
+        //     [ 'id' => '5', 'name' => 'Thursday',],
+        //     [ 'id' => '6', 'name' => 'Friday',],
+        //     [ 'id' => '7', 'name' => 'Saturday',],
+        // );
+
         return view('admin.raport-has-mark.edit', [
             'raportHasMark' => $raportHasMark,
+            'listOfRaports' => json_encode($results),
+            'listOfSubjects' => $subjects,
         ]);
     }
 

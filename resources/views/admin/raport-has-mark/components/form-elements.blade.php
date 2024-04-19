@@ -1,16 +1,16 @@
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('raport_id'), 'has-success': fields.raport_id && fields.raport_id.valid }">
-    <label for="raport_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.raport-has-mark.columns.raport_id') }}</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.raport_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('raport_id'), 'form-control-success': fields.raport_id && fields.raport_id.valid}" id="raport_id" name="raport_id" placeholder="{{ trans('admin.raport-has-mark.columns.raport_id') }}">
-        <div v-if="errors.has('raport_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('raport_id') }}</div>
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('raport_selected'), 'has-success': fields.raport_selected && fields.raport_selected.valid }">
+    <label for="raport_selected" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.raport_selected.columns.raport_selected') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <multiselect v-model="form.raport_selected" placeholder="{{ trans('brackets/admin-ui::admin.forms.select_options') }}" label="name" :options="{{ $listOfRaports }}" :multiple="false" :searchable="true"  track-by="id" open-direction="bottom"></multiselect>
+        <div v-if="errors.has('raport_selected')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('raport_selected') }}</div>
     </div>
 </div>
 
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('subject_id'), 'has-success': fields.subject_id && fields.subject_id.valid }">
-    <label for="subject_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.raport-has-mark.columns.subject_id') }}</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.subject_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('subject_id'), 'form-control-success': fields.subject_id && fields.subject_id.valid}" id="subject_id" name="subject_id" placeholder="{{ trans('admin.raport-has-mark.columns.subject_id') }}">
-        <div v-if="errors.has('subject_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('subject_id') }}</div>
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('subject_selected'), 'has-success': fields.subject_selected && fields.subject_selected.valid }">
+    <label for="subject_selected" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.subject.columns.subject_selected') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <multiselect v-model="form.subject_selected" placeholder="{{ trans('brackets/admin-ui::admin.forms.select_options') }}" label="name" :options="{{ $listOfSubjects->toJson() }}" :multiple="false" :searchable="true"  track-by="id" open-direction="bottom"></multiselect>
+        <div v-if="errors.has('subject_selected')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('subject_selected') }}</div>
     </div>
 </div>
 

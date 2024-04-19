@@ -48,4 +48,24 @@ class UpdateRaportHasMark extends FormRequest
 
         return $sanitized;
     }
+
+    protected function prepareForValidation()
+    { 
+        if (empty($this->raport_selected)) {
+            $this->merge(['raport_id'=> null]);
+        } elseif (count($this->raport_selected) == 1) {
+            $this->merge(['raport_id'=> $this->raport_selected[0]['id']]);
+          } else {
+            $this->merge(['raport_id'=> $this->raport_selected['id']]);
+          }
+
+          if (empty($this->subject_selected)) {
+            $this->merge(['subject_id'=> null]);
+        } elseif (count($this->subject_selected) == 1) {
+            $this->merge(['subject_id'=> $this->subject_selected[0]['id']]);
+          } else {
+            $this->merge(['subject_id'=> $this->subject_selected['id']]);
+          }
+    }
+
 }
