@@ -39,12 +39,10 @@ return new class extends Migration
             $table->date('registration_date')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('class_id')->nullable();
-            $table->string('login_id')->nullable();
-            $table->unsignedInteger('class_id');
-            $table->foreign('class_id')
-                ->references('id') // class id
-                ->on('class_group');
+            $table->integer('class_id')->nullable();
+            //$table->foreign('class_id')
+                //->references('id') // class id
+                //->on('class_group');
             $table->unsignedInteger('login_id');
             $table->foreign('login_id')
                 ->references('id') // class id
